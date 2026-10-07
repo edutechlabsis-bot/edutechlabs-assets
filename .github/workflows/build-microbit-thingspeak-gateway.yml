@@ -1,0 +1,37 @@
+name: Build Microbit ThingSpeak Gateway EXE
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "microbit-thingspeak-gateway/**"
+      - ".github/workflows/build-microbit-thingspeak-gateway.yml"
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip pyinstaller pyserial requests
+
+      - name: Build Windows EXE
+        run: pyinstaller --noconfirm --clean --onefile --windowed --name Microbit-ThingSpeak-Gateway microbit-thingspeak-gateway/microbit_thingspeak_gateway.py
+
+      - name: Show output
+        run: Get-ChildItem -Recurse dist
+
+      - name: Upload EXE
+        uses: actions/upload-artifact@v4
+        with:
+          name: Microbit-ThingSpeak-Gateway-Windows
+          path: dist/Microbit-ThingSpeak-Gateway.exe
+          if-no-files-found: error
+          retention-days: 30
