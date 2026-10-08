@@ -10,7 +10,7 @@ from tkinter import ttk, messagebox, simpledialog
 import requests
 from bleak import BleakClient, BleakScanner
 
-APP_NAME = "Microbit → ThingSpeak Bluetooth Gateway"
+APP_NAME = "Microbit → ThingSpeak Bluetooth Gateway v2"
 CONFIG_FILE = "microbit_thingspeak_bluetooth_config.json"
 DEFAULT_INTERVAL = 15
 
@@ -192,7 +192,22 @@ class GatewayApp:
                     self.ui("No s'ha pogut connectar", self.current_device_name)
                     return
                 self.ui("✅ Connectat per Bluetooth", f"Dispositiu: {self.current_device_name}. Esperant dades...")
-                await client.start_notify(UART_TX_UUID, self.notification_handler)
+                # The micro:bit UART TX characteristic is 6E400002... (micro:bit -> PC).
+                # Older build incorrectly listened to 6E400003..., which is RX (PC -> micro:bit).
+                tx_char = client.services.get_characteristic(UART_TX_UUID)
+                if tx_char is None:
+                    available = []
+                    for service in client.services:
+                        for char in service.characteristics:
+                            available.append(str(char.uuid))
+                    self.last_raw_response = "Característiques BLE disponibles:\n" + "\n".join(available)
+                    self.ui(
+                        "UART Bluetooth no disponible",
+                        "La micro:bit està connectada, però no exposa la característica UART TX esperada. Recarrega el programa MakeCode amb «bluetooth servei uart» i torna a aparellar-la."
+                    )
+                    return
+
+                await client.start_notify(tx_char, self.notification_handler)
                 while not self.stop_event.is_set():
                     await asyncio.sleep(0.2)
                 try:
