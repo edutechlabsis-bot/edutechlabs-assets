@@ -10,7 +10,7 @@ import requests
 import serial
 from serial.tools import list_ports
 
-APP_NAME = "Microbit -> ThingSpeak Gateway"
+APP_NAME = "Microbit → ThingSpeak Gateway v4"
 CONFIG_FILE = "microbit_thingspeak_config.json"
 BAUD = 115200
 DEFAULT_INTERVAL = 15
@@ -66,9 +66,9 @@ class GatewayApp:
         frame = ttk.Frame(root, padding=18)
         frame.pack(fill="both", expand=True)
 
-        ttk.Label(frame, text="Micro:bit -> ThingSpeak",
+        ttk.Label(frame, text="Micro:bit → ThingSpeak",
                   font=("Segoe UI", 17, "bold")).pack(anchor="w")
-        ttk.Label(frame, text="Pont automatic USB -> Internet -> ThingSpeak").pack(
+        ttk.Label(frame, text="Pont automàtic USB/Serial → Internet → ThingSpeak").pack(
             anchor="w", pady=(2, 16)
         )
 
@@ -90,7 +90,7 @@ class GatewayApp:
         buttons.pack(fill="x")
         ttk.Button(buttons, text="Reinicia pont", command=self.restart_gateway).pack(side="left")
         ttk.Button(buttons, text="Canvia API Key", command=self.change_api_key).pack(side="left", padx=8)
-        ttk.Button(buttons, text="Detalls tecnics", command=self.show_technical_details).pack(side="left")
+        ttk.Button(buttons, text="Debug", command=self.show_debug).pack(side="left")
         ttk.Button(buttons, text="Surt", command=self.on_close).pack(side="right")
 
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
@@ -103,7 +103,7 @@ class GatewayApp:
     def first_run_setup(self):
         key = simpledialog.askstring(
             APP_NAME,
-            "Primera configuracio.\n\nEnganxa la Write API Key del teu canal de ThingSpeak:",
+            "Primera configuració.\n\nEnganxa la Write API Key del teu canal de ThingSpeak:",
             parent=self.root,
         )
         if not key:
@@ -112,7 +112,7 @@ class GatewayApp:
         self.cfg["api_key"] = key.strip()
         self.cfg["interval"] = max(DEFAULT_INTERVAL, int(self.cfg.get("interval", DEFAULT_INTERVAL)))
         save_config(self.cfg)
-        self.ui("Configuracio guardada", "Buscant la micro:bit...")
+        self.ui("Configuració guardada", "Buscant la micro:bit...")
         self.root.after(300, self.start_gateway)
 
     def change_api_key(self):
@@ -128,17 +128,17 @@ class GatewayApp:
             messagebox.showinfo(APP_NAME, "API Key guardada.")
             self.restart_gateway()
 
-    def show_technical_details(self):
+    def show_debug(self):
         win = tk.Toplevel(self.root)
-        win.title("Detalls tecnics")
+        win.title("Debug")
         win.geometry("700x420")
 
         frm = ttk.Frame(win, padding=14)
         frm.pack(fill="both", expand=True)
 
-        ttk.Label(frm, text="Detalls tecnics",
+        ttk.Label(frm, text="Debug",
                   font=("Segoe UI", 14, "bold")).pack(anchor="w")
-        ttk.Label(frm, text="Informacio avancada per a proves, diagnosi o demostracions.").pack(
+        ttk.Label(frm, text="Informació tècnica per a diagnosi i demostracions.").pack(
             anchor="w", pady=(2, 10)
         )
 
@@ -147,12 +147,12 @@ class GatewayApp:
 
         port_text = self.ser.port if self.ser and getattr(self.ser, "is_open", False) else "No connectat"
         technical_text = (
-            f"Port serie: {port_text}\n"
+            f"Port sèrie: {port_text}\n"
             f"Baud rate: {BAUD}\n"
-            f"Interval minim: {self.cfg.get('interval', DEFAULT_INTERVAL)} s\n\n"
-            f"Ultima linia rebuda:\n{self.last_sent_line or '(cap)'}\n\n"
-            f"Ultim entry_id:\n{self.last_entry_id or '(cap)'}\n\n"
-            f"Resposta completa de ThingSpeak:\n{self.last_raw_response or '(encara no hi ha resposta)'}"
+            f"Interval mínim: {self.cfg.get('interval', DEFAULT_INTERVAL)} s\n\n"
+            f"Última línia rebuda:\n{self.last_sent_line or '(cap)'}\n\n"
+            f"Últim entry_id:\n{self.last_entry_id or '(cap)'}\n\n"
+            f"Resposta completa de ThingSpeak (JSON):\n{self.last_raw_response or '(encara no hi ha resposta)'}"
         )
         info.insert("1.0", technical_text)
         info.configure(state="disabled")
@@ -199,7 +199,7 @@ class GatewayApp:
         try:
             self.ser = serial.Serial(port, BAUD, timeout=1)
             time.sleep(1.5)
-            self.ui("Connectat", f"Micro:bit detectada a {port}. Esperant dades...")
+            self.ui("✅ Connectat", f"Micro:bit detectada a {port}. Esperant dades...")
         except Exception as e:
             self.ui("Error obrint la micro:bit", str(e))
             return
@@ -249,21 +249,21 @@ class GatewayApp:
                         entry_id = response_text
                     self.last_entry_id = entry_id
                     shown = ", ".join(values)
-                    detail = f"Ultim valor enviat: {shown}"
+                    detail = f"Últim valor enviat: {shown}"
                     if entry_id:
-                        detail += f" | Entrada {entry_id}"
-                    self.ui("Enviant a ThingSpeak", detail)
+                        detail += f" · Entrada {entry_id}"
+                    self.ui("✅ Enviant a ThingSpeak", detail)
                 else:
                     self.ui("ThingSpeak ha rebutjat l'enviament",
-                            "Revisa la connexio o la Write API Key.")
+                            "Revisa la connexió o la Write API Key.")
 
             except serial.SerialException:
                 self.ui("Micro:bit desconnectada",
                         "Torna-la a connectar i prem 'Reinicia pont'.")
                 break
             except requests.RequestException:
-                self.ui("Sense connexio amb ThingSpeak",
-                        "Comprova la connexio a Internet.")
+                self.ui("Sense connexió amb ThingSpeak",
+                        "Comprova la connexió a Internet.")
                 time.sleep(2)
             except Exception as e:
                 self.ui("Error", str(e))
