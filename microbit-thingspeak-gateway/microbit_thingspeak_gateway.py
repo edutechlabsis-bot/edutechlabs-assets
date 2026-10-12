@@ -14,7 +14,7 @@ from serial.tools import list_ports
 APP_NAME = "Connector Micro:bit → ThingSpeak v5"
 APP_VERSION = "5.0.0"
 PROJECT_NAME = "Estació Meteorològica en Xarxa"
-PROJECT_ORIGINAL = "Paula Pacho Ruiz i Anton Nin Nin"
+PROJECT_ORIGINAL = "Anton Nin Nin i Paula Pacho Ruiz"
 AUTHOR = "Ignasi Sánchez Rodríguez"
 FRAMEWORK = "Mentoria Digital 4.0"
 LICENSE_NAME = "PolyForm Noncommercial 1.0.0"
@@ -147,20 +147,29 @@ class GatewayApp:
         frm = ttk.Frame(win, padding=18)
         frm.pack(fill="both", expand=True)
 
-        ttk.Label(frm, text="Connector Micro:bit → ThingSpeak",
+        top = ttk.Frame(frm)
+        top.pack(fill="x")
+
+        titles = ttk.Frame(top)
+        titles.pack(side="left", fill="x", expand=True)
+        ttk.Label(titles, text="Connector Micro:bit → ThingSpeak",
                   font=("Segoe UI", 15, "bold")).pack(anchor="w")
-        ttk.Label(frm, text=PROJECT_NAME,
-                  font=("Segoe UI", 11, "bold")).pack(anchor="w", pady=(4, 14))
+
+        logo_source = tk.PhotoImage(data=MENTORIES_LOGO_PNG)
+        logo_small = logo_source.subsample(2, 2)
+        win._mentories_logo = (logo_source, logo_small)
+        ttk.Label(top, image=logo_small).pack(side="right", anchor="ne", padx=(12, 0), pady=(2, 0))
 
         text = (
-            f"Projecte original: {PROJECT_ORIGINAL}\n"
-            f"Connector desenvolupat per: {AUTHOR}\n"
-            f"{FRAMEWORK} · 2026\n\n"
-            f"Versió: {APP_VERSION}\n"
-            f"Llicència: {LICENSE_NAME}\n"
+            f"Projecte: {PROJECT_NAME}\\n"
+            f"Projecte original: {PROJECT_ORIGINAL}\\n"
+            f"Connector desenvolupat per: {AUTHOR}\\n"
+            f"{FRAMEWORK} · 2026\\n\\n"
+            f"Versió: {APP_VERSION}\\n"
+            f"Llicència: {LICENSE_NAME}\\n"
             f"{LICENSE_URL}"
         )
-        ttk.Label(frm, text=text, justify="left", wraplength=570).pack(anchor="w")
+        ttk.Label(frm, text=text, justify="left", wraplength=570).pack(anchor="w", pady=(14, 0))
 
         actions = ttk.Frame(frm)
         actions.pack(fill="x", side="bottom", pady=(16, 0))
