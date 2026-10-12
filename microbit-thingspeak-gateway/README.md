@@ -32,6 +32,8 @@ El connector:
 
 ## Versió
 
+**5.1.5** — descripció breu de l'EXE a Windows: «Micro:bit · Autor: Ignasi Sánchez». Sense canvis funcionals ni de configuració.
+
 **5.1.4** — actualització menor del nom del connector i del fitxer EXE per comprovar que la Write API Key es conserva després d'una actualització i d'un canvi de carpeta. Sense canvis al sistema de configuració.
 
 **5.1.3** — la configuració de ThingSpeak es conserva entre actualitzacions (AppData), amb migració de versions anteriors i mode portable opcional.

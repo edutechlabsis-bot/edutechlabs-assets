@@ -12,8 +12,8 @@ import requests
 import serial
 from serial.tools import list_ports
 
-APP_NAME = "Connector Microbit-ThingSpeak-Serial v5.1.4"
-APP_VERSION = "5.1.4"
+APP_NAME = "Connector Microbit-ThingSpeak-Serial v5.1.5"
+APP_VERSION = "5.1.5"
 PROJECT_NAME = "Estació Meteorològica en Xarxa"
 AUTHOR = "Ignasi Sánchez Rodríguez"
 PROGRAM_NAME = "Mentoria 4.0"

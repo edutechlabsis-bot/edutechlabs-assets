@@ -34,7 +34,7 @@ jobs:
       - name: Upload EXE
         uses: actions/upload-artifact@v4
         with:
-          name: Connector-Microbit-ThingSpeak-Serial-v5.1.4
+          name: Connector-Microbit-ThingSpeak-Serial-v5.1.5
           path: |
             dist/Connector Microbit-ThingSpeak-Serial.exe
             dist/LICENSE.txt
