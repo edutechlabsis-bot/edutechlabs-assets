@@ -15,7 +15,7 @@ VSVersionInfo(
       StringTable(
         '040904B0',
         [
-          StringStruct('CompanyName', 'Mentoria Digital 4.0'),
+          StringStruct('CompanyName', ''),
           StringStruct('FileDescription', 'Connector Micro:bit → ThingSpeak · Estació Meteorològica en Xarxa'),
           StringStruct('FileVersion', '5.1.1'),
           StringStruct('InternalName', 'Microbit-ThingSpeak-Gateway'),
@@ -23,7 +23,7 @@ VSVersionInfo(
           StringStruct('OriginalFilename', 'Microbit-ThingSpeak-Gateway.exe'),
           StringStruct('ProductName', 'Connector Micro:bit → ThingSpeak'),
           StringStruct('ProductVersion', '5.1.1'),
-          StringStruct('Comments', 'Connector desenvolupat per Ignasi Sánchez Rodríguez · Mentoria Digital 4.0 · PolyForm Noncommercial 1.0.0')
+          StringStruct('Comments', 'Autor: Ignasi Sánchez Rodríguez · Llicència: PolyForm Noncommercial 1.0.0')
         ]
       )
     ]),
