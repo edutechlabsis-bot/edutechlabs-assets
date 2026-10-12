@@ -1,7 +1,7 @@
 Connector Micro:bit → ThingSpeak
 Estació Meteorològica en Xarxa
 
-Projecte original: Paula Pacho Ruiz i Anton Nin Nin
+Projecte original: Anton Nin Nin i Paula Pacho Ruiz
 Connector desenvolupat per: Ignasi Sánchez Rodríguez
 Mentoria Digital 4.0 · 2026
 
