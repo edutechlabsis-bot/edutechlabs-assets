@@ -32,7 +32,7 @@ El connector:
 
 ## Versió
 
-Versió actual: **5.1.0**
+Versió actual: **5.1.1**
 
 ## Llicència del connector
 
