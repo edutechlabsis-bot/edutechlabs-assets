@@ -11,14 +11,14 @@ import requests
 import serial
 from serial.tools import list_ports
 
-APP_NAME = "Connector Micro:bit → ThingSpeak v5.1.1"
-APP_VERSION = "5.1.1"
+APP_NAME = "Connector Micro:bit → ThingSpeak v5.1.2"
+APP_VERSION = "5.1.2"
 PROJECT_NAME = "Estació Meteorològica en Xarxa"
-PROJECT_ORIGINAL = "Anton Nin Nin i Paula Pacho Ruiz"
 AUTHOR = "Ignasi Sánchez Rodríguez"
-FRAMEWORK = "Mentoria Digital 4.0"
-LICENSE_NAME = "PolyForm Noncommercial 1.0.0"
-LICENSE_URL = "https://polyformproject.org/licenses/noncommercial/1.0.0"
+PROGRAM_NAME = "Mentoria 4.0"
+COPYRIGHT_NOTICE = "© 2026 Generalitat de Catalunya · Departament d’Educació i Formació Professional"
+LICENSE_NAME = "EUPL 1.2"
+LICENSE_URL = "https://interoperable-europe.ec.europa.eu/sites/default/files/inline-files/EUPL%20v1_2%20ES.txt"
 
 MENTORIES_LOGO_PNG = (
     "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"
@@ -148,7 +148,7 @@ class GatewayApp:
     def show_about(self):
         win = tk.Toplevel(self.root)
         win.title("Quant a")
-        win.geometry("620x360")
+        win.geometry("650x425")
         win.resizable(False, False)
 
         frm = ttk.Frame(win, padding=18)
@@ -176,12 +176,12 @@ class GatewayApp:
         info.pack(fill="x", anchor="w", pady=(16, 0))
 
         ttk.Label(info, text=f"Projecte: {PROJECT_NAME}").pack(anchor="w", pady=(0, 5))
-        ttk.Label(info, text=f"Projecte original: {PROJECT_ORIGINAL}").pack(anchor="w", pady=(0, 5))
-        ttk.Label(info, text=f"Connector desenvolupat per: {AUTHOR}").pack(anchor="w", pady=(0, 5))
-        ttk.Label(info, text=f"{FRAMEWORK} · 2026").pack(anchor="w", pady=(0, 12))
-        ttk.Label(info, text=f"Versió: {APP_VERSION}").pack(anchor="w", pady=(0, 5))
-        ttk.Label(info, text=f"Llicència: {LICENSE_NAME}").pack(anchor="w", pady=(0, 3))
-        ttk.Label(info, text=LICENSE_URL).pack(anchor="w")
+        ttk.Label(info, text=f"Desenvolupador del connector: {AUTHOR}").pack(anchor="w", pady=(0, 5))
+        ttk.Label(info, text=f"Programa: {PROGRAM_NAME}").pack(anchor="w", pady=(0, 5))
+        ttk.Label(info, text=f"Copyright: {COPYRIGHT_NOTICE}", wraplength=610, justify="left").pack(anchor="w", pady=(0, 5))
+        ttk.Label(info, text=f"Llicència del programari: {LICENSE_NAME}").pack(anchor="w", pady=(0, 5))
+        ttk.Label(info, text="Materials educatius: CC BY-NC-SA 4.0").pack(anchor="w", pady=(0, 5))
+        ttk.Label(info, text=f"Versió: {APP_VERSION}").pack(anchor="w", pady=(0, 3))
 
         actions = ttk.Frame(frm)
         actions.pack(fill="x", side="bottom", pady=(18, 0))

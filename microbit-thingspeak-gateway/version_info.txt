@@ -1,8 +1,8 @@
 # UTF-8
 VSVersionInfo(
   ffi=FixedFileInfo(
-    filevers=(5, 1, 1, 0),
-    prodvers=(5, 1, 1, 0),
+    filevers=(5, 1, 2, 0),
+    prodvers=(5, 1, 2, 0),
     mask=0x3f,
     flags=0x0,
     OS=0x40004,
@@ -15,15 +15,15 @@ VSVersionInfo(
       StringTable(
         '040904B0',
         [
-          StringStruct('CompanyName', ''),
-          StringStruct('FileDescription', 'Connector Micro:bit → ThingSpeak · Estació Meteorològica en Xarxa'),
-          StringStruct('FileVersion', '5.1.1'),
+          StringStruct('CompanyName', 'Generalitat de Catalunya'),
+          StringStruct('FileDescription', 'Connector Micro:bit → ThingSpeak · Desenvolupador: Ignasi Sánchez Rodríguez'),
+          StringStruct('FileVersion', '5.1.2'),
           StringStruct('InternalName', 'Microbit-ThingSpeak-Gateway'),
-          StringStruct('LegalCopyright', ''),
+          StringStruct('LegalCopyright', '© 2026 Generalitat de Catalunya · Departament d’Educació i Formació Professional'),
           StringStruct('OriginalFilename', 'Microbit-ThingSpeak-Gateway.exe'),
           StringStruct('ProductName', 'Connector Micro:bit → ThingSpeak'),
-          StringStruct('ProductVersion', '5.1.1'),
-          StringStruct('Comments', 'Autor: Ignasi Sánchez Rodríguez · Llicència: PolyForm Noncommercial 1.0.0')
+          StringStruct('ProductVersion', '5.1.2'),
+          StringStruct('Comments', 'Desenvolupador: Ignasi Sánchez Rodríguez · Projecte: Estació Meteorològica en Xarxa · Programa: Mentoria 4.0 · Llicència: EUPL 1.2')
         ]
       )
     ]),

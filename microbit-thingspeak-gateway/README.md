@@ -1,25 +1,25 @@
 # Connector Micro:bit → ThingSpeak
 
-Connector per a Windows que permet enviar a **ThingSpeak** les dades generades per una **micro:bit** connectada per USB/Serial.
+Aplicació per a Windows que envia a **ThingSpeak** les dades generades per una **micro:bit** connectada per USB/Serial.
 
-Aquest connector s'ha desenvolupat dins del projecte **Estació Meteorològica en Xarxa**.
+## Identificació
 
-## Crèdits
-
-**Projecte:** Estació Meteorològica en Xarxa  
-**Projecte original:** Anton Nin Nin i Paula Pacho Ruiz  
-**Connector Micro:bit → ThingSpeak desenvolupat per:** Ignasi Sánchez Rodríguez  
-**Marc:** Mentoria Digital 4.0 · 2026
+- **Projecte:** Estació Meteorològica en Xarxa
+- **Desenvolupador del connector:** Ignasi Sánchez Rodríguez
+- **Programa:** Mentoria 4.0
+- **Copyright:** © 2026 Generalitat de Catalunya · Departament d'Educació i Formació Professional
+- **Llicència del programari:** EUPL 1.2
+- **Materials educatius del projecte:** CC BY-NC-SA 4.0 (llicència independent de la del connector)
 
 Web del projecte: https://linktr.ee/meteorologiaenxarxa
 
 ## Funcionament
 
-```
+```text
 micro:bit → USB / Serial → Connector Windows → Internet → ThingSpeak
 ```
 
-La micro:bit envia dades pel port sèrie i el connector les rep i les publica automàticament al canal de ThingSpeak mitjançant la **Write API Key**.
+La micro:bit envia dades pel port sèrie. El connector les rep i les publica automàticament al canal de ThingSpeak mitjançant la seva **Write API Key**.
 
 El connector:
 
@@ -27,26 +27,19 @@ El connector:
 - permet configurar i canviar la Write API Key;
 - envia fins a 8 valors als camps `field1`–`field8`;
 - respecta un interval mínim d'enviament de 15 segons;
-- inclou una finestra de diagnosi amb el port sèrie, l'última dada rebuda, l'`entry_id` i la resposta de ThingSpeak;
-- inclou l'apartat **«Quant a»** amb els crèdits del projecte, l'autoria del connector i la llicència.
+- ofereix diagnosi amb el port sèrie, l'última dada rebuda, l'`entry_id` i la resposta de ThingSpeak;
+- inclou una finestra «Quant a» amb identificació, autoria i llicències.
 
 ## Versió
 
-Versió actual: **5.1.1**
+**5.1.2** — actualització de crèdits, propietats i llicència, sense canvis de funcionament.
 
-## Llicència del connector
+## Codi font i llicència
 
-Aquest programari es distribueix sota la **PolyForm Noncommercial License 1.0.0**:
+El **connector** es distribueix sota la **Llicència Pública de la Unió Europea (EUPL), versió 1.2**.
 
-https://polyformproject.org/licenses/noncommercial/1.0.0/
+- Text íntegre: [LICENSE.txt](LICENSE.txt)
+- Text oficial de l'EUPL 1.2: https://interoperable-europe.ec.europa.eu/sites/default/files/inline-files/EUPL%20v1_2%20ES.txt
+- Codi font del connector: https://github.com/edutechlabsis-bot/edutechlabs-assets/tree/main/microbit-thingspeak-gateway
 
-La redistribució del connector ha de conservar l'avís de llicència i l'enllaç corresponent.
-
-> La llicència anterior correspon al connector Micro:bit → ThingSpeak. Els materials originals del projecte Estació Meteorològica en Xarxa mantenen els crèdits i la llicència indicats pels seus autors.
-
-## Projecte original
-
-Recursos originals vinculats a l'Estació Meteorològica en Xarxa:
-
-- Paula Pacho Ruiz: https://github.com/Paula-Pacho/micro-bit/tree/e92696bad1bd214e4ae19149dc8984d2f9ed5a35/Projectes%20/%20IoT-Estacio-Meteo
-- Anton Nin Nin: https://github.com/antonnin/estacions-meteo-escoles/
+Els **materials educatius** d'Estació Meteorològica en Xarxa es regeixen, per separat, per **CC BY-NC-SA 4.0**. Aquesta llicència de materials no s'aplica al codi del connector.
