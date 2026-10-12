@@ -3,6 +3,7 @@ import os
 import sys
 import threading
 import time
+import webbrowser
 import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
 
@@ -10,7 +11,14 @@ import requests
 import serial
 from serial.tools import list_ports
 
-APP_NAME = "Microbit → ThingSpeak Gateway v4"
+APP_NAME = "Connector Micro:bit → ThingSpeak v5"
+APP_VERSION = "5.0.0"
+PROJECT_NAME = "Estació Meteorològica en Xarxa"
+PROJECT_ORIGINAL = "Paula Pacho Ruiz i Anton Nin Nin"
+AUTHOR = "Ignasi Sánchez Rodríguez"
+FRAMEWORK = "Mentoria Digital 4.0"
+LICENSE_NAME = "PolyForm Noncommercial 1.0.0"
+LICENSE_URL = "https://polyformproject.org/licenses/noncommercial/1.0.0"
 CONFIG_FILE = "microbit_thingspeak_config.json"
 BAUD = 115200
 DEFAULT_INTERVAL = 15
@@ -52,7 +60,7 @@ class GatewayApp:
     def __init__(self, root):
         self.root = root
         self.root.title(APP_NAME)
-        self.root.geometry("570x330")
+        self.root.geometry("650x350")
         self.root.resizable(False, False)
 
         self.cfg = load_config()
@@ -91,6 +99,7 @@ class GatewayApp:
         ttk.Button(buttons, text="Reinicia pont", command=self.restart_gateway).pack(side="left")
         ttk.Button(buttons, text="Canvia API Key", command=self.change_api_key).pack(side="left", padx=8)
         ttk.Button(buttons, text="Debug", command=self.show_debug).pack(side="left")
+        ttk.Button(buttons, text="ℹ Quant a", command=self.show_about).pack(side="left", padx=(8, 0))
         ttk.Button(buttons, text="Surt", command=self.on_close).pack(side="right")
 
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
@@ -127,6 +136,37 @@ class GatewayApp:
             save_config(self.cfg)
             messagebox.showinfo(APP_NAME, "API Key guardada.")
             self.restart_gateway()
+
+
+    def show_about(self):
+        win = tk.Toplevel(self.root)
+        win.title("Quant a")
+        win.geometry("620x340")
+        win.resizable(False, False)
+
+        frm = ttk.Frame(win, padding=18)
+        frm.pack(fill="both", expand=True)
+
+        ttk.Label(frm, text="Connector Micro:bit → ThingSpeak",
+                  font=("Segoe UI", 15, "bold")).pack(anchor="w")
+        ttk.Label(frm, text=PROJECT_NAME,
+                  font=("Segoe UI", 11, "bold")).pack(anchor="w", pady=(4, 14))
+
+        text = (
+            f"Projecte original: {PROJECT_ORIGINAL}\n"
+            f"Connector desenvolupat per: {AUTHOR}\n"
+            f"{FRAMEWORK} · 2026\n\n"
+            f"Versió: {APP_VERSION}\n"
+            f"Llicència: {LICENSE_NAME}\n"
+            f"{LICENSE_URL}"
+        )
+        ttk.Label(frm, text=text, justify="left", wraplength=570).pack(anchor="w")
+
+        actions = ttk.Frame(frm)
+        actions.pack(fill="x", side="bottom", pady=(16, 0))
+        ttk.Button(actions, text="Obre la llicència",
+                   command=lambda: webbrowser.open(LICENSE_URL)).pack(side="left")
+        ttk.Button(actions, text="Tanca", command=win.destroy).pack(side="right")
 
     def show_debug(self):
         win = tk.Toplevel(self.root)
