@@ -11,8 +11,8 @@ import requests
 import serial
 from serial.tools import list_ports
 
-APP_NAME = "Connector Micro:bit → ThingSpeak v5.1"
-APP_VERSION = "5.1.0"
+APP_NAME = "Connector Micro:bit → ThingSpeak v5.1.1"
+APP_VERSION = "5.1.1"
 PROJECT_NAME = "Estació Meteorològica en Xarxa"
 PROJECT_ORIGINAL = "Anton Nin Nin i Paula Pacho Ruiz"
 AUTHOR = "Ignasi Sánchez Rodríguez"
@@ -148,7 +148,7 @@ class GatewayApp:
     def show_about(self):
         win = tk.Toplevel(self.root)
         win.title("Quant a")
-        win.geometry("620x340")
+        win.geometry("620x360")
         win.resizable(False, False)
 
         frm = ttk.Frame(win, padding=18)
@@ -159,29 +159,37 @@ class GatewayApp:
 
         titles = ttk.Frame(top)
         titles.pack(side="left", fill="x", expand=True)
-        ttk.Label(titles, text="Connector Micro:bit → ThingSpeak",
-                  font=("Segoe UI", 15, "bold")).pack(anchor="w")
+        ttk.Label(
+            titles,
+            text="Connector Micro:bit → ThingSpeak",
+            font=("Segoe UI", 15, "bold")
+        ).pack(anchor="w")
 
         logo_source = tk.PhotoImage(data=MENTORIES_LOGO_PNG)
         logo_small = logo_source.subsample(2, 2)
         win._mentories_logo = (logo_source, logo_small)
-        ttk.Label(top, image=logo_small).pack(side="right", anchor="ne", padx=(12, 0), pady=(2, 0))
-
-        text = (
-            f"Projecte: {PROJECT_NAME}\\n"
-            f"Projecte original: {PROJECT_ORIGINAL}\\n"
-            f"Connector desenvolupat per: {AUTHOR}\\n"
-            f"{FRAMEWORK} · 2026\\n\\n"
-            f"Versió: {APP_VERSION}\\n"
-            f"Llicència: {LICENSE_NAME}\\n"
-            f"{LICENSE_URL}"
+        ttk.Label(top, image=logo_small).pack(
+            side="right", anchor="ne", padx=(12, 0), pady=(2, 0)
         )
-        ttk.Label(frm, text=text, justify="left", wraplength=570).pack(anchor="w", pady=(14, 0))
+
+        info = ttk.Frame(frm)
+        info.pack(fill="x", anchor="w", pady=(16, 0))
+
+        ttk.Label(info, text=f"Projecte: {PROJECT_NAME}").pack(anchor="w", pady=(0, 5))
+        ttk.Label(info, text=f"Projecte original: {PROJECT_ORIGINAL}").pack(anchor="w", pady=(0, 5))
+        ttk.Label(info, text=f"Connector desenvolupat per: {AUTHOR}").pack(anchor="w", pady=(0, 5))
+        ttk.Label(info, text=f"{FRAMEWORK} · 2026").pack(anchor="w", pady=(0, 12))
+        ttk.Label(info, text=f"Versió: {APP_VERSION}").pack(anchor="w", pady=(0, 5))
+        ttk.Label(info, text=f"Llicència: {LICENSE_NAME}").pack(anchor="w", pady=(0, 3))
+        ttk.Label(info, text=LICENSE_URL).pack(anchor="w")
 
         actions = ttk.Frame(frm)
-        actions.pack(fill="x", side="bottom", pady=(16, 0))
-        ttk.Button(actions, text="Obre la llicència",
-                   command=lambda: webbrowser.open(LICENSE_URL)).pack(side="left")
+        actions.pack(fill="x", side="bottom", pady=(18, 0))
+        ttk.Button(
+            actions,
+            text="Obre la llicència",
+            command=lambda: webbrowser.open(LICENSE_URL)
+        ).pack(side="left")
         ttk.Button(actions, text="Tanca", command=win.destroy).pack(side="right")
 
     def show_debug(self):
