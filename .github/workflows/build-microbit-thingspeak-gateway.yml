@@ -23,7 +23,7 @@ jobs:
         run: python -m pip install --upgrade pip pyinstaller pyserial requests
 
       - name: Build Windows EXE
-        run: pyinstaller --noconfirm --clean --onefile --windowed --version-file microbit-thingspeak-gateway/version_info.txt --name Microbit-ThingSpeak-Gateway microbit-thingspeak-gateway/microbit_thingspeak_gateway.py
+        run: pyinstaller --noconfirm --clean --onefile --windowed --version-file microbit-thingspeak-gateway/version_info.txt --name "Connector Microbit-ThingSpeak-Serial" microbit-thingspeak-gateway/microbit_thingspeak_gateway.py
 
       - name: Add license notice
         run: Copy-Item microbit-thingspeak-gateway/LICENSE.txt dist/LICENSE.txt
@@ -34,9 +34,9 @@ jobs:
       - name: Upload EXE
         uses: actions/upload-artifact@v4
         with:
-          name: Microbit-ThingSpeak-Gateway-Windows
+          name: Connector-Microbit-ThingSpeak-Serial-v5.1.4
           path: |
-            dist/Microbit-ThingSpeak-Gateway.exe
+            dist/Connector Microbit-ThingSpeak-Serial.exe
             dist/LICENSE.txt
           if-no-files-found: error
           retention-days: 30

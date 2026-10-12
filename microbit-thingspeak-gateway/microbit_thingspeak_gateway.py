@@ -12,8 +12,8 @@ import requests
 import serial
 from serial.tools import list_ports
 
-APP_NAME = "Connector Micro:bit → ThingSpeak v5.1.3"
-APP_VERSION = "5.1.3"
+APP_NAME = "Connector Microbit-ThingSpeak-Serial v5.1.4"
+APP_VERSION = "5.1.4"
 PROJECT_NAME = "Estació Meteorològica en Xarxa"
 AUTHOR = "Ignasi Sánchez Rodríguez"
 PROGRAM_NAME = "Mentoria 4.0"
@@ -199,7 +199,7 @@ class GatewayApp:
         titles.pack(side="left", fill="x", expand=True)
         ttk.Label(
             titles,
-            text="Connector Micro:bit → ThingSpeak",
+            text="Connector Microbit-ThingSpeak-Serial",
             font=("Segoe UI", 15, "bold")
         ).pack(anchor="w")
 

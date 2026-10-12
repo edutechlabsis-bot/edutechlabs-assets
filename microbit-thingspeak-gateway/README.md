@@ -1,4 +1,4 @@
-# Connector Micro:bit → ThingSpeak
+# Connector Microbit-ThingSpeak-Serial
 
 Aplicació per a Windows que envia a **ThingSpeak** les dades generades per una **micro:bit** connectada per USB/Serial.
 
@@ -31,6 +31,8 @@ El connector:
 - inclou una finestra «Quant a» amb identificació, autoria i llicències.
 
 ## Versió
+
+**5.1.4** — actualització menor del nom del connector i del fitxer EXE per comprovar que la Write API Key es conserva després d'una actualització i d'un canvi de carpeta. Sense canvis al sistema de configuració.
 
 **5.1.3** — la configuració de ThingSpeak es conserva entre actualitzacions (AppData), amb migració de versions anteriors i mode portable opcional.
 
