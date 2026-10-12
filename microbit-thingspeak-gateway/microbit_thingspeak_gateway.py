@@ -12,8 +12,8 @@ import requests
 import serial
 from serial.tools import list_ports
 
-APP_NAME = "Connector Micro:bit → ThingSpeak v5.1.2"
-APP_VERSION = "5.1.2"
+APP_NAME = "Connector Micro:bit → ThingSpeak v5.1.3"
+APP_VERSION = "5.1.3"
 PROJECT_NAME = "Estació Meteorològica en Xarxa"
 AUTHOR = "Ignasi Sánchez Rodríguez"
 PROGRAM_NAME = "Mentoria 4.0"
@@ -27,7 +27,13 @@ MENTORIES_LOGO_PNG = (
     "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"
 )
-CONFIG_FILE = "microbit_thingspeak_config.json"
+# La configuració habitual es desa al perfil d'usuari de Windows i
+# sobreviu a les actualitzacions i canvis d'ubicació de l'EXE.
+# Per transportar també la configuració, creeu un fitxer portable explícit
+# 'microbit_thingspeak_portable.json' al costat de l'EXE.
+LEGACY_CONFIG_FILE = "microbit_thingspeak_config.json"
+PORTABLE_CONFIG_FILE = "microbit_thingspeak_portable.json"
+APP_CONFIG_FOLDER = "Microbit-ThingSpeak-Gateway"
 BAUD = 115200
 DEFAULT_INTERVAL = 15
 
@@ -36,20 +42,51 @@ def app_dir():
         return os.path.dirname(sys.executable)
     return os.path.dirname(os.path.abspath(__file__))
 
-CONFIG_PATH = os.path.join(app_dir(), CONFIG_FILE)
+def appdata_dir():
+    base = os.environ.get("APPDATA") or os.path.join(os.path.expanduser("~"), ".config")
+    return os.path.join(base, APP_CONFIG_FOLDER)
+
+USER_CONFIG_PATH = os.path.join(appdata_dir(), "config.json")
+LEGACY_CONFIG_PATH = os.path.join(app_dir(), LEGACY_CONFIG_FILE)
+PORTABLE_CONFIG_PATH = os.path.join(app_dir(), PORTABLE_CONFIG_FILE)
+
+def read_config_file(path):
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data if isinstance(data, dict) else None
+    except (OSError, ValueError):
+        return None
 
 def load_config():
     cfg = {"api_key": "", "interval": DEFAULT_INTERVAL}
-    try:
-        with open(CONFIG_PATH, "r", encoding="utf-8") as f:
-            cfg.update(json.load(f))
-    except Exception:
-        pass
+    # Primer: portabilitat voluntària. Després: preferències persistents del
+    # perfil Windows. Finalment: migració de la versió anterior de l'app.
+    for path in (PORTABLE_CONFIG_PATH, USER_CONFIG_PATH, LEGACY_CONFIG_PATH):
+        data = read_config_file(path)
+        if data is None:
+            continue
+        cfg.update(data)
+        if path == LEGACY_CONFIG_PATH and cfg.get("api_key"):
+            try:
+                save_config(cfg)  # Copia la configuració antiga a AppData.
+            except OSError:
+                pass  # Manté la clau antiga en memòria i al fitxer original.
+        return cfg
     return cfg
 
 def save_config(cfg):
-    with open(CONFIG_PATH, "w", encoding="utf-8") as f:
-        json.dump(cfg, f, indent=2, ensure_ascii=False)
+    # El mode portable només s'activa si ja existeix el fitxer explícit.
+    path = PORTABLE_CONFIG_PATH if os.path.isfile(PORTABLE_CONFIG_PATH) else USER_CONFIG_PATH
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    temp_path = path + ".tmp"
+    try:
+        with open(temp_path, "w", encoding="utf-8") as f:
+            json.dump(cfg, f, indent=2, ensure_ascii=False)
+        os.replace(temp_path, path)
+    finally:
+        if os.path.exists(temp_path):
+            os.remove(temp_path)
 
 def find_microbit_port():
     ports = list(list_ports.comports())

@@ -32,7 +32,7 @@ El connector:
 
 ## Versió
 
-**5.1.2** — actualització de crèdits, propietats i llicència, sense canvis de funcionament.
+**5.1.3** — la configuració de ThingSpeak es conserva entre actualitzacions (AppData), amb migració de versions anteriors i mode portable opcional.
 
 ## Codi font i llicència
 
@@ -43,3 +43,17 @@ El **connector** es distribueix sota la **Llicència Pública de la Unió Europe
 - Codi font del connector: https://github.com/edutechlabsis-bot/edutechlabs-assets/tree/main/microbit-thingspeak-gateway
 
 Els **materials educatius** d'Estació Meteorològica en Xarxa es regeixen, per separat, per **CC BY-NC-SA 4.0**. Aquesta llicència de materials no s'aplica al codi del connector.
+
+## Configuració persistent i ús als centres
+
+La primera vegada, introduïu la **Write API Key** del canal ThingSpeak. A partir d'aquell moment, el connector la desa al perfil de Windows, sense necessitat d'administrador:
+
+`%APPDATA%\\Microbit-ThingSpeak-Gateway\\config.json`
+
+Això permet copiar una versió nova de l'EXE, fins i tot a una carpeta diferent, sense tornar a introduir la clau. La configuració és **per usuari Windows**, no global per ordinador. Si hi ha diferents comptes d'usuari, cadascun té la seva configuració.
+
+**Migració de versions anteriors:** executeu una vegada la versió 5.1.3 a la mateixa carpeta de la versió antiga, al costat del fitxer `microbit_thingspeak_config.json`; així en recupera la clau i la desa a AppData. El fitxer antic no s'elimina. Després ja podreu moure les versions noves lliurement.
+
+**Mode portable opcional:** si voleu transportar també la configuració entre ordinadors, creeu manualment un fitxer `microbit_thingspeak_portable.json` al costat de l'EXE amb el contingut del vostre fitxer `config.json`. El connector el prioritzarà i hi desarà els canvis. **Aquest fitxer conté la Write API Key; no el compartiu públicament ni el pengeu a GitHub.**
+
+Per distribuir el connector a diversos ordinadors dels centres només cal copiar l'EXE. Cada perfil d'usuari introdueix la clau una única vegada.
