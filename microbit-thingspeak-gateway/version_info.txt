@@ -1,8 +1,8 @@
 # UTF-8
 VSVersionInfo(
   ffi=FixedFileInfo(
-    filevers=(5, 0, 0, 0),
-    prodvers=(5, 0, 0, 0),
+    filevers=(5, 1, 0, 0),
+    prodvers=(5, 1, 0, 0),
     mask=0x3f,
     flags=0x0,
     OS=0x40004,
@@ -17,13 +17,13 @@ VSVersionInfo(
         [
           StringStruct('CompanyName', 'Mentoria Digital 4.0'),
           StringStruct('FileDescription', 'Connector Micro:bit → ThingSpeak · Estació Meteorològica en Xarxa'),
-          StringStruct('FileVersion', '5.0.0'),
+          StringStruct('FileVersion', '5.1.0'),
           StringStruct('InternalName', 'Microbit-ThingSpeak-Gateway'),
           StringStruct('LegalCopyright', ''),
           StringStruct('OriginalFilename', 'Microbit-ThingSpeak-Gateway.exe'),
           StringStruct('ProductName', 'Connector Micro:bit → ThingSpeak'),
-          StringStruct('ProductVersion', '5.0.0'),
-          StringStruct('Comments', 'Projecte original: Paula Pacho Ruiz i Anton Nin Nin · Connector desenvolupat per Ignasi Sánchez Rodríguez · PolyForm Noncommercial 1.0.0')
+          StringStruct('ProductVersion', '5.1.0'),
+          StringStruct('Comments', 'Connector desenvolupat per Ignasi Sánchez Rodríguez · Mentoria Digital 4.0 · PolyForm Noncommercial 1.0.0')
         ]
       )
     ]),
