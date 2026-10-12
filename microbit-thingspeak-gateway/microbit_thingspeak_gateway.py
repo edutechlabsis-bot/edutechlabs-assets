@@ -1,4 +1,5 @@
-# Build via GitHub Actions\nimport json
+# Build via GitHub Actions
+import json
 import os
 import sys
 import threading
